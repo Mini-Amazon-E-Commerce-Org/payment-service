@@ -17,7 +17,6 @@ Logs/
 # Ignore environment files
 .env
 
-appsettings.json
 appsettings.*.json
 appsetting.Development.json
 
