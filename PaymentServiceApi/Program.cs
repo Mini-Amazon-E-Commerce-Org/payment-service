@@ -5,7 +5,6 @@ using PaymentServiceApi.Repositories;
 using PaymentServiceApi.Services;
 using Serilog;
 
-
 //logging into files
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -20,6 +19,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Host.UseSerilog();
 
