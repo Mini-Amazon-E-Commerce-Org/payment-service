@@ -5,24 +5,23 @@ using PaymentServiceApi.Repositories;
 using PaymentServiceApi.Services;
 using Serilog;
 
+//logging into files
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
 
+    //exclude extra logs details
+    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+    .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Warning)
+
+    .WriteTo.File("Logs/log-.txt",
+    rollingInterval: RollingInterval.Day,
+    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
-//logging into files
-//Log.Logger = new LoggerConfiguration()
-//    .MinimumLevel.Information()
 
-//    //exclude extra logs details
-//    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
-//    .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Warning)
-
-//    .WriteTo.File("Logs/log-.txt",
-//    rollingInterval: RollingInterval.Day,
-//    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}")
-//    .CreateLogger();
-
-//builder.Host.UseSerilog();
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
@@ -53,7 +52,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 //register middleware for logging
-//app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.MapControllers();
 
