@@ -18,7 +18,10 @@ namespace PaymentServiceApi.Data
             modelBuilder.Entity<Payment>(entity =>
             {
                 entity.Property(p => p.Amount)
-                      .HasPrecision(10, 2); 
+                      .HasPrecision(10, 2);
+
+                entity.Property(p => p.Status)
+                .HasConversion<int>();
             });
         }
 

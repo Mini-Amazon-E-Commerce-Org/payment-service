@@ -23,7 +23,9 @@ namespace PaymentServiceApi.Repositories
         public async Task<Payment?> GetByOrderIdAsync(int orderId)
         {
             return await _context.Payments
-            .FirstOrDefaultAsync(p => p.OrderId == orderId);
+                .Where(p => p.OrderId == orderId)
+                .OrderByDescending(p => p.TransactionId)
+                .FirstOrDefaultAsync();
         }
     }
 }

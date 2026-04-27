@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PaymentServiceApi.Enums;
 
 namespace PaymentServiceApi.Models
 {
@@ -16,7 +17,7 @@ namespace PaymentServiceApi.Models
         public decimal Amount { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public PaymentStatus Status { get; set; }
         public DateTime PaymentDate { get; set; }
         public DateTime CreatedAt { get; set; }
     }
