@@ -15,12 +15,12 @@ This service handles payment processing, and validation.
 ##  Architecture
 
 This service follows **Controller → Service → Repository** pattern.
-
+```
 Controller → Service → Repository → Database
-
+```
 ---                
 ##  Project Structure
-
+```
 PaymentService.Api/
 │
 ├── Controllers/        # API endpoints
@@ -32,6 +32,7 @@ PaymentService.Api/
 ├── Enums/              # PaymentStatus
 ├── Middleware/         # Request Logging 
 └── Program.cs
+```
 
 ---
 ##  Tech Stack
@@ -49,28 +50,28 @@ PaymentService.Api/
 **POST** `/api/payment`
 
 #### Request
-
+```
 {
   "orderId": 101,
   "amount": 500
 }
-
+```
 #### Response (Success)
-
+```
 {
   "success": true,
   "message": "Payment successful",
   "transactionId": 1
 }
-
+```
 #### Response (Failure)
-
+```
 {
   "success": false,
   "message": "Payment failed",
   "transactionId": 2
 }
-
+```
 ---
 ##  Business Logic
 
@@ -90,14 +91,14 @@ PaymentService.Api/
 
 ---
 ##  Payment Status
-
+```
 public enum PaymentStatus
 {
     Pending = 0,
     Success = 1,
     Failed = 2
 }
-
+```
 ---
 ##  Database Schema
 
@@ -157,12 +158,11 @@ Logging is implemented using **Serilog**.
 ---
 ##  Run the Project
 
-Bash Commands:
-
+```
 dotnet restore
 dotnet build
 dotnet run
-
+```
 ---
 ##  Author
 
